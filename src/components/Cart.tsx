@@ -83,7 +83,12 @@ const Cart = (props: Props): JSX.Element => {
           date_time: ymdHis,
         };
         console.log(data);
-        return axios.post("/codingTest/post.php", data, {
+        const PROXY =
+          window.location.hostname === "localhost"
+            ? ""
+            : "http://211.214.213.65:9002";
+        const URL = `${PROXY}/codingTest/post.php`;
+        return axios.post(URL, data, {
           headers: {
             "Content-type": "application/json",
             Accept: "application/json",

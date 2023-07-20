@@ -41,8 +41,13 @@ type Res = {
 
 const LastestOrder = () => {
   const [data, setData] = useState<Data>();
+  const PROXY =
+    window.location.hostname === "localhost"
+      ? ""
+      : "http://211.214.213.65:9002";
+  const URL = `${PROXY}/codingTest/getLast.php`;
   const getLast = async () => {
-    const res: Res = await axios.get("/codingTest/getLast.php");
+    const res: Res = await axios.get(URL);
     console.log(res);
     const weekName = getDay(res.data[0].date_time.substring(0, 10));
     console.log(res.data[0].date_time.substring(0, 10));
